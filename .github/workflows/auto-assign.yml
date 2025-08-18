@@ -10,8 +10,12 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const {data: repo} = await github.rest.repos.get(context.repo)
+            if (!repo.has_issues) return
+            const num = context.payload.pull_request?.number
+            if (!num) return
             await github.rest.issues.addAssignees({
               ...context.repo,
-              issue_number: context.payload.pull_request.number,
+              issue_number: num,
               assignees: ["Lombardoh"]
             })
