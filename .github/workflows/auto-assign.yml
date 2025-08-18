@@ -1,5 +1,8 @@
 name: assign
-on: pull_request_target
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 permissions:
   issues: write
 jobs:
