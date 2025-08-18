@@ -1,0 +1,21 @@
+name: Auto-assign Lombardoh
+
+on: pull_request
+
+permissions:
+  pull-requests: write
+
+jobs:
+  assign-self:
+    runs-on: ubuntu-latest
+    if: github.repository == 'Lombardoh/XMLtoJSON'
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              reviewers: ["Lombardoh"]
+            })
