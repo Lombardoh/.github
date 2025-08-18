@@ -1,4 +1,4 @@
-name: Auto-assign Lombardoh asd
+name: Auto-assign Lombardoh
 
 on: pull_request_target
 
